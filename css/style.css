@@ -1,0 +1,22 @@
+h2{
+	font-size: 1.25em;
+    margin-bottom: 1em;
+    margin-top: 0.25em;
+}
+main{
+	display:flex;
+	flex-direction: column;
+	gap:1em;
+}
+form{
+	font-size:0.7em;
+	display:flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	gap:1.5em;
+}
+#result{
+	margin-top:3em;
+	background: #EEE;
+	padding:10px;
+}

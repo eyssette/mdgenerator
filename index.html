@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Générateur de Markdown à partir de templates Liquid</title>
+	<link rel="stylesheet" href="./css/sakura.min.css" type="text/css">
+	<link rel="stylesheet" href="./css/style.css" type="text/css">
+	<script src="./js/liquid.browser.umd.min.js"></script>
+	<script src="./js/script.js"></script>
+</head>
+
+<body>
+	<header>
+		<h1>MD Generator</h1>
+		<h2 id="nameTemplate">Template</h2>
+		<p id="description"></p>
+		<p><a href="./index.html">Voir d'autres templates</a></p>
+	</header>
+	<main>
+		<div>
+			<form id="dynamicForm"></form>
+		</div>
+		<div>
+			<button id="generateOutput">Générer</button>
+			<button id="copyButton">Copier dans le presse-papier</button>
+		</div>
+		<div id="result" contenteditable="true"></div>
+	</main>
+</body>
+
+</html>

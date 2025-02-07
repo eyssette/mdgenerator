@@ -1,0 +1,16 @@
+{
+	"name": "Template CONTRIBUTING.md",
+	"description": "Cet outil génère un fichier CONTRIBUTING.md pour favoriser la collaboration autour de votre projet",
+	"variables": {
+		"titreProjet": "Titre de votre projet",
+		"URLnewIssueSUGGESTION": "URL pour issue “Suggestion”",
+		"URLnewIssueBUG": "URL pour issue “Bug”",
+		"URLissues": "URL pour issues",
+		"mailServiceDesk": "Mail du service Desk",
+		"URLcontact": "URL site perso pour contact",
+		"tchap": "Salon Tchap ?",
+		"URLtchap": "URL salon Tchap",
+		"precisionsTchap": "Texte d'invitation au salon",
+		"URLnewIssueHELP": "URL pour issue “Help”"
+	}
+}
