@@ -154,7 +154,7 @@ async function generateOutput(template, variables) {
   const result = await engine.parseAndRender(template, context);
 
   // On place le résultat dans l'élément html correspondant
-  window.jar.updateCode(result)
+  window.jar.updateCode(result.replaceAll('&#39;',"'"))
   const buttons = document.body.querySelector('#buttons')
   buttons.scrollIntoView();
   // Si on clique sur le bouton pour copier, le résultat est mis dans le presse-papier
