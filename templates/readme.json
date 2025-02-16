@@ -1,0 +1,10 @@
+{
+	"name": "Template README.md",
+	"description": "Cet outil génère une base de fichier README.md pour pouvoir présenter votre fichier sur la Forge",
+	"variables": {
+		"projectName": "Titre de votre projet",
+		"projectDescription": "Description de votre projet",
+		"URLremote": "URL de votre dépôt sur la forge",
+		"licenseName": "Nom de la license"
+	}
+}
