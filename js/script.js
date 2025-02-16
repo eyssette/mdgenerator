@@ -141,7 +141,7 @@ async function generateOutput(template, variables) {
     // Pour chaque variable, on récupère la valeur de la variable dans le formulaire
     const input = document.getElementById(variable.name);
     if (input.type == "text") {
-      // Pour un champ input de type texte, on récupère le texte de l'inpu
+      // Pour un champ input de type texte, on récupère le texte de l'input
       context[variable.name] = sanitizeInput(input.value) || "";
     } else {
       // Pour un champ de type checkbox, on regarde si la case est cochée ou pas
@@ -154,7 +154,7 @@ async function generateOutput(template, variables) {
   const result = await engine.parseAndRender(template, context);
 
   // On place le résultat dans l'élément html correspondant
-  resultElement.innerHTML = result.replaceAll("\n", "<br>");
+  window.jar.updateCode(result)
   // Si on clique sur le bouton pour copier, le résultat est mis dans le presse-papier
   const copyButton = document.body.querySelector("#copyButton");
   copyButton.addEventListener("click", () => {
