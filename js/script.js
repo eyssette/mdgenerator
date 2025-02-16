@@ -1,3 +1,5 @@
+const messageBackToHomePage = `<a href="./index.html">(voir d'autres templates)</a>`
+
 // Pour purifier un input afin d'éviter des injections malveillantes
 function sanitizeInput(input) {
   const div = document.createElement("div");
@@ -22,15 +24,17 @@ function removeDuplicates(array, columnNumber) {
 let variablesFromJson = {};
 
 async function loadTemplate() {
-  // On récupère le hash qui indique le template à utiliser
-  const hash = window.location.hash.substring(1);
-  if (!hash) {
-    alert("Veuillez spécifier un fichier en ajoutant son hash dans l'URL");
+  // On récupère le paramètre t qui indique le template à utiliser
+  const params = new URLSearchParams(document.location.search);
+  const templateName = params.get("t");
+  if (!templateName) {
+    const mainElement = document.body.querySelector("main");
+    mainElement.innerHTML=""
     return;
   }
   const filePath = `./templates/`;
-  const templateFile = filePath + `${hash}.liquid`;
-  const jsonFile = filePath + `${hash}.json`;
+  const templateFile = filePath + `${templateName}.liquid`;
+  const jsonFile = filePath + `${templateName}.json`;
 
   try {
     // On récupère les infos sur le template
@@ -42,7 +46,7 @@ async function loadTemplate() {
       ? infosTemplateJson.name
       : "";
     const nameTemplateElement = document.querySelector("#nameTemplate");
-    nameTemplateElement.textContent = nameTemplateFromJson;
+    nameTemplateElement.innerHTML = nameTemplateFromJson + messageBackToHomePage;
     // Récupération de la description du template
     const descriptionFromJson = infosTemplateJson.description
       ? infosTemplateJson.description
