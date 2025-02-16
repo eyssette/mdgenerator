@@ -155,7 +155,8 @@ async function generateOutput(template, variables) {
 
   // On place le résultat dans l'élément html correspondant
   window.jar.updateCode(result)
-  resultElement.scrollIntoView();
+  const buttons = document.body.querySelector('#buttons')
+  buttons.scrollIntoView();
   // Si on clique sur le bouton pour copier, le résultat est mis dans le presse-papier
   const copyButton = document.body.querySelector("#copyButton");
   copyButton.addEventListener("click", () => {

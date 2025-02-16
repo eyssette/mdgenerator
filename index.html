@@ -4,18 +4,20 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Générateur de Markdown à partir de templates Liquid</title>
+	<meta name="description" content="Générateur de Markdown à partir de templates Liquid">
+	<title>MD Generator</title>
 	<link rel="stylesheet" href="./css/sakura.min.css" type="text/css">
 	<link rel="stylesheet" href="./css/style.css" type="text/css">
 	<link rel="stylesheet" href="./css/editorHighlight.css" type="text/css">
 	<script src="./js/liquid.browser.umd.min.js"></script>
 	<script type="module" src="./js/configureEditor.js"></script>
 	<script src="./js/script.js"></script>
+	<link rel="icon" href="favicon.svg">
 </head>
 
 <body>
 	<header>
-		<h1>MD Generator</h1>
+		<h1>🏭 MD Generator</h1>
 		<h2 id="nameTemplate"></h2>
 		<div id="description">
 			<p>Cet outil permet de générer du Markdown à partir d'un template</p>
@@ -29,7 +31,7 @@
 		<div>
 			<form id="dynamicForm"></form>
 		</div>
-		<div>
+		<div id="buttons">
 			<button id="generateOutput">Générer</button>
 			<button id="copyButton">Copier dans le presse-papier</button>
 		</div>
