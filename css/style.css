@@ -1,34 +1,34 @@
-h2{
-	font-size: 1.25em;
-    margin-bottom: 1em;
-    margin-top: 0.25em;
+h2 {
+  font-size: 1.25em;
+  margin-bottom: 1em;
+  margin-top: 0.25em;
 }
 h2 a {
-	margin-left:0.5em;
-	display:inline-block;
-	font-size:0.8em;
+  margin-left: 0.5em;
+  display: inline-block;
+  font-size: 0.8em;
 }
-main{
-	display:flex;
-	flex-direction: column;
-	gap:1em;
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
-form{
-	font-size:0.7em;
-	display:flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	gap:1.5em;
+form {
+  font-size: 0.7em;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1.5em;
 }
-#description{
-	margin-bottom:2em;
+#description {
+  margin-bottom: 2em;
 }
-#result{
-	margin-top:1em;
-	background: #EEE;
-	padding:10px;
+#result {
+  margin-top: 1em;
+  background: #eee;
+  padding: 10px;
 }
-footer{
-	font-size: 0.8em;
-	margin-top: 3em;
+footer {
+  font-size: 0.8em;
+  margin-top: 3em;
 }

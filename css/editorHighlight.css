@@ -1,64 +1,64 @@
 .markdownTitles {
-	font-size: 1.1em;
+  font-size: 1.1em;
 }
 
 .markdownTitles.h1 {
-	color: darkred;
-	font-size: 1.2em;
-	font-weight: bold;
+  color: darkred;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 .markdownTitles.h2 {
-	color: darkblue;
-	border-bottom: 1px solid darkblue;
-	font-weight: bold;
+  color: darkblue;
+  border-bottom: 1px solid darkblue;
+  font-weight: bold;
 }
 
 .markdownTitles.h3 {
-	font-weight: bold;
-	font-size: 1em;
+  font-weight: bold;
+  font-size: 1em;
 }
 
 .markdownTitles.h4 {
-	color: rgb(72, 0, 140);
-	font-size: 0.9em;
+  color: rgb(72, 0, 140);
+  font-size: 0.9em;
 }
 
 .markdownBold {
-	font-weight: bold;
+  font-weight: bold;
 }
 .markdownItalic {
-	font-style: italic;
+  font-style: italic;
 }
 .markdownLists {
-	color: darkblue;
-	font-weight: bold;
+  color: darkblue;
+  font-weight: bold;
 }
 
-.markdownLinksText{
-	color:blue;
+.markdownLinksText {
+  color: blue;
 }
 
 .markdownLinksURL {
-	color: darkblue;
+  color: darkblue;
 }
 
 .markdownHTMLtag {
-	color: #377512 !important;
+  color: #377512 !important;
 }
 .markdownHTMLtag,
 .markdownHTMLtagContent {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 .markdownHTMLcomment {
-	color: #666;
+  color: #666;
 }
 
 .markdownSeparator {
-	color: darkred;
-	font-weight: bold;
+  color: darkred;
+  font-weight: bold;
 }
 .markdownYAML {
-	color: darkgreen;
-	font-weight: bold;
+  color: darkgreen;
+  font-weight: bold;
 }

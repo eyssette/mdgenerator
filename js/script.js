@@ -1,4 +1,4 @@
-const messageBackToHomePage = `<a href="./index.html">(voir d'autres templates)</a>`
+const messageBackToHomePage = `<a href="./index.html">(voir d'autres templates)</a>`;
 
 // Pour purifier un input afin d'éviter des injections malveillantes
 function sanitizeInput(input) {
@@ -29,7 +29,7 @@ async function loadTemplate() {
   const templateName = params.get("t");
   if (!templateName) {
     const mainElement = document.body.querySelector("main");
-    mainElement.innerHTML=""
+    mainElement.innerHTML = "";
     return;
   }
   const filePath = `./templates/`;
@@ -46,7 +46,8 @@ async function loadTemplate() {
       ? infosTemplateJson.name
       : "";
     const nameTemplateElement = document.querySelector("#nameTemplate");
-    nameTemplateElement.innerHTML = nameTemplateFromJson + messageBackToHomePage;
+    nameTemplateElement.innerHTML =
+      nameTemplateFromJson + messageBackToHomePage;
     // Récupération de la description du template
     const descriptionFromJson = infosTemplateJson.description
       ? infosTemplateJson.description
@@ -154,17 +155,15 @@ async function generateOutput(template, variables) {
   const result = await engine.parseAndRender(template, context);
 
   // On place le résultat dans l'élément html correspondant
-  window.jar.updateCode(result.replaceAll('&#39;',"'"))
-  const buttons = document.body.querySelector('#buttons')
+  window.jar.updateCode(result.replaceAll("&#39;", "'"));
+  const buttons = document.body.querySelector("#buttons");
   buttons.scrollIntoView();
   // Si on clique sur le bouton pour copier, le résultat est mis dans le presse-papier
   const copyButton = document.body.querySelector("#copyButton");
   copyButton.addEventListener("click", () => {
-    navigator.clipboard
-      .writeText(window.jar.toString())
-      .then(() => {
-        alert("Votre texte généré est copié dans le presse-papier");
-      });
+    navigator.clipboard.writeText(window.jar.toString()).then(() => {
+      alert("Votre texte généré est copié dans le presse-papier");
+    });
   });
 }
 
