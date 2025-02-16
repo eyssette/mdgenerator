@@ -33,8 +33,13 @@
 	color: darkblue;
 	font-weight: bold;
 }
+
+.markdownLinksText{
+	color:blue;
+}
+
 .markdownLinksURL {
-	color: blue;
+	color: darkblue;
 }
 
 .markdownHTMLtag {
