@@ -20,6 +20,9 @@ form{
 	flex-direction: row;
 	gap:1.5em;
 }
+#description{
+	margin-bottom:2em;
+}
 #result{
 	margin-top:3em;
 	background: #EEE;
