@@ -1,9 +1,11 @@
+// Pour purifier un input afin d'éviter des injections malveillantes
 function sanitizeInput(input) {
   const div = document.createElement("div");
   div.textContent = input;
   return div.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
+// Pour supprimer les doublons dans un tableau, en prenant en compte comme critère de vérification un numéro de colonnes particulier
 function removeDuplicates(array, columnNumber) {
   const seen = new Set();
   return array.filter((row) => {
@@ -20,6 +22,7 @@ function removeDuplicates(array, columnNumber) {
 let variablesFromJson = {};
 
 async function loadTemplate() {
+  // On récupère le hash qui indique le template à utiliser
   const hash = window.location.hash.substring(1);
   if (!hash) {
     alert("Veuillez spécifier un fichier en ajoutant son hash dans l'URL");
@@ -28,103 +31,127 @@ async function loadTemplate() {
   const filePath = `./templates/`;
   const templateFile = filePath + `${hash}.liquid`;
   const jsonFile = filePath + `${hash}.json`;
+
   try {
     // On récupère les infos sur le template
     const responseJson = await fetch(jsonFile);
     if (!responseJson.ok) throw new Error("Fichier introuvable");
+    // Récupération du nom du template
     const infosTemplateJson = await responseJson.json();
-	 const nameTemplateFromJson = infosTemplateJson.name ? infosTemplateJson.name : "";
-	 const nameTemplateElement = document.querySelector("#nameTemplate");
-	 nameTemplateElement.textContent = nameTemplateFromJson;
-    const descriptionFromJson = infosTemplateJson.description ? infosTemplateJson.description : "";
+    const nameTemplateFromJson = infosTemplateJson.name
+      ? infosTemplateJson.name
+      : "";
+    const nameTemplateElement = document.querySelector("#nameTemplate");
+    nameTemplateElement.textContent = nameTemplateFromJson;
+    // Récupération de la description du template
+    const descriptionFromJson = infosTemplateJson.description
+      ? infosTemplateJson.description
+      : "";
     const descriptionElement = document.querySelector("#description");
-    variablesFromJson = infosTemplateJson.variables;
     descriptionElement.innerHTML = descriptionFromJson;
-	 // On récupère le template pour le transformer en formulaire
-	 const responseTemplate = await fetch(templateFile);
+    // Récupération de la description de chaque variable
+    variablesFromJson = infosTemplateJson.variables;
+    // On récupère le template
+    const responseTemplate = await fetch(templateFile);
     if (!responseTemplate.ok) throw new Error("Fichier introuvable");
     const templateText = await responseTemplate.text();
+    // On transforme le template en formulaire
     parseTemplate(templateText);
   } catch (error) {
     alert("Erreur lors du chargement du fichier: " + error.message);
   }
 }
 
+// Pour parcourir le template et créer le formulaire
 function parseTemplate(template) {
   const form = document.getElementById("dynamicForm");
   form.innerHTML = "";
 
+  // On récupère les variables dans le template
   const variableOrder = new Set();
-  const conditionalVars = new Set();
   let variableMatches = [
     ...template.matchAll(/({{\s*(\w+)\s*}}|{%\s*if\s*(\w+)\s*%})/g),
   ];
+  // On supprime les doublons (variables qui sont utilisées à plusieurs reprises dans le template)
   variableMatches = removeDuplicates(variableMatches, 0);
 
+  // On identifie pour chaque variable son type
   variableMatches.forEach((match) => {
     if (match[2]) {
+      // Premières variables capturées : les variables textes (qui donneront lieu à un champ input de type "texte à rentrer" dans le formulaire)
       variableOrder.add({ name: match[2], type: "text" });
     } else if (match[3]) {
+      // Deuxième variables capturées : les variables qui définissent des conditions dans un bloc "if" (elles donneront lieu à un champ input de type "case à cocher" dans le formulaire)
       variableOrder.add({ name: match[3], type: "checkbox" });
-      conditionalVars.add(match[3]);
     }
   });
 
+  // On crée le formulaire en parcourant les variables du template
   variableOrder.forEach((variable) => {
     if (variable.type === "checkbox") {
+      // Si on a une variable qui définit une condition dans un bloc if : on crée une case à cocher
       const div = document.createElement("div");
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.id = variable.name;
       checkbox.name = variable.name;
-
       const label = document.createElement("label");
-		const variableDescription = variablesFromJson[variable.name] ? variablesFromJson[variable.name] :  variable.name;
+      const variableDescription = variablesFromJson[variable.name]
+        ? variablesFromJson[variable.name]
+        : variable.name;
       label.textContent = variableDescription;
       label.setAttribute("for", variable.name);
-
       div.appendChild(label);
       div.appendChild(checkbox);
       form.appendChild(div);
     } else {
+      // Si on a une variable simple dont la valeur doit être du texte : on crée un champ input avec du texte à compléter
       const div = document.createElement("div");
       const label = document.createElement("label");
-      const variableDescription = variablesFromJson[variable.name] ? variablesFromJson[variable.name] :  variable.name;
+      const variableDescription = variablesFromJson[variable.name]
+        ? variablesFromJson[variable.name]
+        : variable.name;
       label.textContent = variableDescription;
-
       const input = document.createElement("input");
       input.type = "text";
       input.id = variable.name;
       input.name = variable.name;
-
       div.appendChild(label);
       div.appendChild(input);
       form.appendChild(div);
     }
   });
 
+  // Quand on clique sur le bouton "Générer", on génère le résultat
   const button = document.querySelector("#generateOutput");
-  button.onclick = () =>
-    generateOutput(template, variableOrder, conditionalVars);
+  button.onclick = () => generateOutput(template, variableOrder);
 }
 
-async function generateOutput(template, variables, conditionalVars) {
+// Pour générer le résultat à partir du template et des variables
+async function generateOutput(template, variables) {
   const engine = new liquidjs.Liquid();
   const context = {};
 
+  // On parcourt les variables
   variables.forEach((variable) => {
-    console.log(variable);
+    // Pour chaque variable, on récupère la valeur de la variable dans le formulaire
     const input = document.getElementById(variable.name);
     if (input.type == "text") {
+      // Pour un champ input de type texte, on récupère le texte de l'inpu
       context[variable.name] = sanitizeInput(input.value) || "";
     } else {
+      // Pour un champ de type checkbox, on regarde si la case est cochée ou pas
       context[variable.name] = input.checked ? input.checked : false;
     }
   });
 
+  // On génère le résultat grâce à Liquid
   const resultElement = document.body.querySelector("#result");
   const result = await engine.parseAndRender(template, context);
+
+  // On place le résultat dans l'élément html correspondant
   resultElement.innerHTML = result.replaceAll("\n", "<br>");
+  // Si on clique sur le bouton pour copier, le résultat est mis dans le presse-papier
   const copyButton = document.body.querySelector("#copyButton");
   copyButton.addEventListener("click", () => {
     navigator.clipboard
