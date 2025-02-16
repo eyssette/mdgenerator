@@ -27,10 +27,12 @@ async function loadTemplate() {
   // On récupère le paramètre t qui indique le template à utiliser
   const params = new URLSearchParams(document.location.search);
   const templateName = params.get("t");
+  const mainElement = document.body.querySelector("main");
   if (!templateName) {
-    const mainElement = document.body.querySelector("main");
     mainElement.innerHTML = "";
     return;
+  } else {
+    mainElement.style.display = "block";
   }
   const filePath = `./templates/`;
   const templateFile = filePath + `${templateName}.liquid`;

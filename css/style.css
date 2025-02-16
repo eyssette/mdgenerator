@@ -9,7 +9,7 @@ h2 a {
   font-size: 0.8em;
 }
 main {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 1em;
 }
