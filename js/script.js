@@ -161,7 +161,7 @@ async function generateOutput(template, variables) {
   const copyButton = document.body.querySelector("#copyButton");
   copyButton.addEventListener("click", () => {
     navigator.clipboard
-      .writeText(resultElement.innerHTML.replaceAll("<br>", "\n"))
+      .writeText(window.jar.toString())
       .then(() => {
         alert("Votre texte généré est copié dans le presse-papier");
       });
