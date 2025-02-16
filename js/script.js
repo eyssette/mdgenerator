@@ -1,4 +1,4 @@
-const messageBackToHomePage = `<a href="./index.html">(voir d'autres templates)</a>`;
+const messageBackToHomePage = `<span>(<a href="./index.html">voir d'autres templates</a>)</span>`;
 
 // Pour purifier un input afin d'éviter des injections malveillantes
 function sanitizeInput(input) {

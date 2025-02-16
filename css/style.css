@@ -3,10 +3,14 @@ h2 {
   margin-bottom: 1em;
   margin-top: 0.25em;
 }
-h2 a {
+h2 span {
   margin-left: 0.5em;
   display: inline-block;
   font-size: 0.8em;
+  font-weight: normal;
+}
+a {
+  border-bottom: 1px solid #50919d;
 }
 main {
   display: none;
