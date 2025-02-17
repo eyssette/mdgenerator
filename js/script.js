@@ -34,9 +34,17 @@ async function loadTemplate() {
   } else {
     mainElement.style.display = "block";
   }
-  const filePath = `./templates/`;
-  const templateFile = filePath + `${templateName}.liquid`;
-  const jsonFile = filePath + `${templateName}.json`;
+  let templateFile;
+  let jsonFile;
+  if(templateName.includes('|')) {
+    const splitTemplateName = templateName.split('|')
+    templateFile = splitTemplateName[0].trim()
+    jsonFile = splitTemplateName[1].trim();
+  } else {
+    const filePath = `./templates/`;
+    templateFile = filePath + `${templateName}.liquid`;
+    jsonFile = filePath + `${templateName}.json`;
+  }
 
   try {
     // On récupère les infos sur le template
