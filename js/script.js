@@ -179,7 +179,6 @@ async function generateOutput(template, variables) {
 	});
 
 	// On génère le résultat grâce à Liquid
-	const resultElement = document.body.querySelector("#result");
 	const result = await engine.parseAndRender(template, context);
 
 	// On place le résultat dans l'élément html correspondant
