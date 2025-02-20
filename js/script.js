@@ -169,7 +169,7 @@ async function generateOutput(template, variables) {
 	variables.forEach((variable) => {
 		// Pour chaque variable, on récupère la valeur de la variable dans le formulaire
 		const input = document.getElementById(variable.name);
-		if (input.type == "text") {
+		if (input.type == "text" || input.tagName == "TEXTAREA") {
 			// Pour un champ input de type texte, on récupère le texte de l'input
 			context[variable.name] = sanitizeInput(input.value) || "";
 		} else {
