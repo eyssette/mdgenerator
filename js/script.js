@@ -123,12 +123,30 @@ function parseTemplate(template) {
       // Si on a une variable simple dont la valeur doit être du texte : on crée un champ input avec du texte à compléter
       const div = document.createElement("div");
       const label = document.createElement("label");
-      const variableDescription = variablesFromJson[variable.name]
-        ? variablesFromJson[variable.name]
-        : variable.name;
-      label.textContent = variableDescription;
-      const input = document.createElement("input");
-      input.type = "text";
+      let variableDescription = variablesFromJson[variable.name]
+      let variableDescriptionName
+      let input
+      if(variableDescription) {
+        if(typeof variableDescription == "object") {
+          variableDescriptionName = variableDescription.name
+          if(variableDescription.type == "textarea") {
+          input = document.createElement("textarea")
+          input.rows="4"
+          input.cols="55"
+          } else {
+            input= document.createElement("input");
+            input.type = "text";
+          }
+        } else {
+          variableDescriptionName = variableDescription
+          input= document.createElement("input");
+          input.type = "text";
+        }
+      } else {
+        variableDescriptionName - variable.name
+      }
+      label.textContent = variableDescriptionName;
+      
       input.id = variable.name;
       input.name = variable.name;
       div.appendChild(label);
