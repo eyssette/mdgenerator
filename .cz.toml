@@ -1,0 +1,15 @@
+[tool.commitizen]
+version = "0.1.0"
+update_changelog_on_bump = false
+
+[tool.commitizen.customize]
+types = [
+    {value = "feat", name = "feat: Nouvelle fonctionnalité"},
+    {value = "fix", name = "fix: Correction de bug"},
+    {value = "improvement", name = "improvement: Amélioration d'une fonctionnalité existante"},
+    {value = "docs", name = "docs: Documentation"},
+    {value = "style", name = "style: Mise en forme"},
+    {value = "refactor", name = "refactor: Refactoring du code"},
+    {value = "test", name = "test: Ajout ou modification de tests"},
+    {value = "chore", name = "chore: Maintenance du projet"}
+]
