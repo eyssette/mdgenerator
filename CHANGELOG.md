@@ -1,3 +1,12 @@
+## 1.14.0 (2025-02-21)
+
+
+- feat: ajout d'emojis pour "Contribuer" et "Licence"
+- chore: fix changelog
+- chore: fix configuration commitizen
+- chore: ajout du fichier CHANGELOG
+- chore: config commitizen
+
 ## 1.13.1 (2025-02-21)
 
 
@@ -13,7 +22,8 @@
 ## 1.12.1 (2025-02-21)
 
 
-- improvement(template-README): formulation (contribuer ou discuter
+- improvement(template-README): formulation
+- (contribuer ou discuter
 pour participer à améliorer)
 
 ## 1.12.0 (2025-02-21)
@@ -107,6 +117,7 @@ pour participer à améliorer)
 - style: commentaires sur le script
 
 ## 0.0.1 (2025-02-21)
+
 
 - initial commit
 - Initial commit
